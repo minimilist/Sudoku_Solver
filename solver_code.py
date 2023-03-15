@@ -1,7 +1,4 @@
 from typing import Tuple, List
-# No other imports allowed
-
-# PART OF THE DRIVER CODE
 
 def input_sudoku() -> List[List[int]]:
 	"""Function to take input a sudoku from stdin and return
@@ -29,27 +26,6 @@ def get_block_num(sudoku:List[List[int]], pos:Tuple[int, int]) -> int:
 	"""This function takes a parameter position and returns
 	the block number of the block which contains the position.
 	"""
-	'''if pos[0] <= 3:
-		if pos[1] <= 3:
-			return 1
-		elif pos[1] > 3 and pos[1] <= 6:
-			return 2
-		elif pos[1] > 6 and pos[1] <= 9:
-			return 3
-	elif pos[0] > 3 and pos[0] <= 6:
-		if pos[1] <= 3:
-			return 4
-		elif pos[1] > 3 and pos[1] <= 6:
-			return 5
-		elif pos[1] > 6 and pos[1] <= 9:
-			return 6
-	elif pos[0] > 6 and pos[0] <= 9:
-		if pos[1] <= 3:
-			return 7
-		elif pos[1] > 3 and pos[1] <= 6:
-			return 8
-		elif pos[1] > 6 and pos[1] <= 9:
-			return 9'''
 	if pos[1]%3 > 0:
 		a = pos[1]//3 + 1
 	else:
@@ -66,27 +42,6 @@ def get_position_inside_block(sudoku:List[List[int]], pos:Tuple[int, int]) -> in
 	and returns the index of the position inside the corresponding block.
 	"""
 	b = get_block_num(sudoku,pos)
-	'''if pos[0]%3 == 1:
-		if pos[1]%3 == 1:
-			return 1
-		elif pos[1]%3 == 2:
-			return 2
-		elif pos[1]%3 == 0:
-			return 3
-	elif pos[0]%3 == 2:
-		if pos[1]%3 == 1:
-			return 4
-		elif pos[1]%3 == 2:
-			return 5
-		elif pos[1]%3 == 0:
-			return 6
-	elif pos[0]%3 == 0:
-		if pos[1]%3 == 1:
-			return 7
-		elif pos[1]%3 == 2:
-			return 8
-		elif pos[1]%3 == 0:
-			return 9'''
 	if b%3 > 0:
 		x = pos[1] - 3*(b%3 - 1)
 	else:
@@ -241,28 +196,8 @@ def sudoku_solver(sudoku: List[List[int]]) -> Tuple[bool, List[List[int]]]:
 	
 	return (False, sudoku)
 
-# PLEASE NOTE:
-# We would be importing your functions and checking the return values in the autograder.
-# However, note that you must not print anything in the functions that you define above before you 
-# submit your code since it may result in undefined behaviour of the autograder.
-
-def in_lab_component(sudoku: List[List[int]]):
-	print("Testcases for In Lab evaluation")
-	print("Get Block Number:")
-	print(get_candidates(sudoku,(9,7)))
-	print(get_candidates(sudoku,(7,2)))
-	print(get_candidates(sudoku,(2,6)))
-	print("Get Block:")
-	print(get_block(sudoku,3))
-	print(get_block(sudoku,5))
-	print(get_block(sudoku,9))
-	print("Get Row:")
-	print(get_row(sudoku,3))
-	print(get_row(sudoku,5))
-	print(get_row(sudoku,9))
 
 # Following is the driver code
-# you can edit the following code to check your performance.
 if __name__ == "__main__":
 
 	# Input the sudoku from stdin
@@ -270,10 +205,6 @@ if __name__ == "__main__":
 
 	# Try to solve the sudoku
 	possible, sudoku = sudoku_solver(sudoku)
-
-	# The following line is for the in-lab component
-	in_lab_component(sudoku)
-	# Show the result of the same to your TA to get your code evaulated
 
 	# Check if it could be solved
 	if possible:
